@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Product Detail{% endblock %}
+
+{% block content %}
+  <h2>{{ product.name }}</h2>
+  <p>Packing: {{ product.packing }}</p>
+  <p>Weight: {{ product.weight }} lbs</p>
+  {% if product.rate %}
+    <p>Rate: Rs.{{ product.rate }} per kg. ex-factory</p>
+  {% endif %}
+  <p>Specification: {{ product.specification }}</p>
+  <p>Grade: {{ product.grade }}</p>
+  <img src="{{ product.photo.url }}" alt="{{ product.name }} Photo" width="200">
+  <a href="{% url 'product_update' product.pk %}">Edit</a>
+  <a href="{% url 'product_delete' product.pk %}">Delete</a>
+  <a href="{% url 'products' %}">Back to Products</a>
+{% endblock %}

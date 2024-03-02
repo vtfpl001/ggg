@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Certificate Detail{% endblock %}
+
+{% block content %}
+  <h2>{{ certificate.certificate_name }}</h2>
+  <img src="{{ certificate.photo.url }}" alt="{{ certificate.certificate_name }} Photo" width="200">
+  <a href="{% url 'certificate_update' certificate.pk %}">Edit</a>
+  <a href="{% url 'certificate_delete' certificate.pk %}">Delete</a>
+  <a href="{% url 'certificates' %}">Back to Certificates</a>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Certificates{% endblock %}
+
+{% block content %}
+  <h2>Certificates</h2>
+  <ul>
+    {% for certificate in certificates %}
+      <li>
+        <h3>{{ certificate.certificate_name }}</h3>
+        <img src="{{ certificate.photo.url }}" alt="{{ certificate.certificate_name }} Photo" width="200">
+
+
+        {% if user.is_authenticated %}
+           <a href="{% url 'certificate_detail' certificate.pk %}">View</a>
+          <a href="{% url 'certificate_update' certificate.pk %}">Edit</a>
+          <a href="{% url 'certificate_delete' certificate.pk %}">Delete</a>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+
+  {% if user.is_authenticated %}
+    <a href="{% url 'certificate_create' %}">Create a New Certificate</a>
+  {% endif %}
+{% endblock %}
